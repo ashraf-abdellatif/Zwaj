@@ -14,30 +14,30 @@ namespace ZwajApp.API.Controllers
     [ApiController]
     public class AuthController:ControllerBase
     {
-        IAuthRepository _IAuthRepository;
+        IRepositoryWrapper _IRepositoryWrapper;
         private IConfiguration _config;    
-        public AuthController(IAuthRepository IAuthRepository ,IConfiguration config)
+        public AuthController(IRepositoryWrapper IRepositoryWrapper ,IConfiguration config)
         {
-            _IAuthRepository = IAuthRepository;
+            _IRepositoryWrapper = IRepositoryWrapper;
             _config = config;
         }
         // POST api/Auth/Register
         [HttpPost("register")]
         public async Task<ActionResult> Register(UserforRegisterDTO UserforRegisterDTO)
         {
-            if( await _IAuthRepository.IsExistUser(UserforRegisterDTO.UserName))
+            if( await _IRepositoryWrapper.Auth.IsExistUser(UserforRegisterDTO.UserName))
             return BadRequest("هذا المستخدم مسجل من قبل");
             var UserForCreate = new User{
                 UserName = UserforRegisterDTO.UserName
             };
-            await _IAuthRepository.Register(UserForCreate , UserforRegisterDTO.PassWord);
+            await _IRepositoryWrapper.Auth.Register(UserForCreate , UserforRegisterDTO.PassWord);
             return Ok();
         }
          // POST api/Auth/login
         [HttpPost("login")]
         public async Task<ActionResult> login(UserforLoginDTO userforLoginDTO)
         {
-           var user = await _IAuthRepository.Login(userforLoginDTO.UserName , userforLoginDTO.PassWord);
+           var user = await _IRepositoryWrapper.Auth.Login(userforLoginDTO.UserName , userforLoginDTO.PassWord);
             if(user == null)
             return Unauthorized();
             var tokenString = GenerateJSONWebToken(user);

@@ -7,7 +7,6 @@ namespace ZwajApp.API.DTOs
         [Required]
         public string UserName { get; set; }   
         [Required]
-        [MinLength(5)]
         public string PassWord { get; set; }      
     }
 }

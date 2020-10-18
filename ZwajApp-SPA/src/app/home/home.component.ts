@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  ToggleRegister = false;
   constructor() { }
 
   ngOnInit() {
   }
-
+  ToggleRegisterfunc() {
+this.ToggleRegister = !this.ToggleRegister;
+  }
+  cancleRegister(mode: boolean) {
+    this.ToggleRegister = mode;
+  }
 }

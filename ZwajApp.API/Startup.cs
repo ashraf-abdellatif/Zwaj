@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ZwajApp.API.Data;
+using ZwajApp.API.Extensions;
+using ZwajApp.API.Models;
 
 namespace ZwajApp.API
 {
@@ -40,7 +42,7 @@ namespace ZwajApp.API
     });    
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
-            services.AddScoped<IAuthRepository , AuthRepository>();
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +54,7 @@ namespace ZwajApp.API
             }
             else
             {
+                app.ConfigureExceptionHandler();
                 app.UseHsts();
             }
 

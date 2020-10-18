@@ -3,7 +3,7 @@ using ZwajApp.API.Models;
 
 namespace ZwajApp.API.Data
 {
-    public interface IAuthRepository
+    public interface IAuthRepository: IRepositoryBase<User>
     {
          Task<User> Register (User user  , string PassWord);
          Task<User> Login(string UserName , string PassWord);

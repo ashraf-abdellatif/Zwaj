@@ -12,10 +12,10 @@ constructor(private http: HttpClient) { }
 BaseURL = 'https://localhost:5001/api/Auth/';
 
 Login(UserData: any) {
-return this.http.post(this.BaseURL + 'login' , UserData).pipe(
+  return this.http.post(this.BaseURL + 'login' , UserData).pipe(
    map((resonse: any) => {
     const user = resonse;
-    localStorage.setItem('toke', user.token);
+    localStorage.setItem('token', user.token);
    }));
    }
 Register(UserData: any) {

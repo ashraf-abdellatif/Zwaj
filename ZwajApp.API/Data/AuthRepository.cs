@@ -5,20 +5,18 @@ using System;
 
 namespace ZwajApp.API.Data
 {
-    public class AuthRepository : IAuthRepository
+    public class AuthRepository : RepositoryBase<User>, IAuthRepository
     {
-        DataContext _datacontext;
-        public AuthRepository(DataContext datacontext )
-        {
-            _datacontext = datacontext; 
+        public AuthRepository(DataContext datacontext ):base(datacontext)
+        {  
         }
         public async Task<bool> IsExistUser(string UserName)
         {
-           return  await _datacontext.Users.AnyAsync(x=>x.UserName == UserName);
+           return  await RepositoryContext.Users.AnyAsync(x=>x.UserName == UserName);
         }
         public async Task<User> Login(string UserName, string PassWord)
         {
-            var user  = await _datacontext.Users.FirstOrDefaultAsync(x=>x.UserName == UserName);
+            var user  = await RepositoryContext.Users.FirstOrDefaultAsync(x=>x.UserName == UserName);
             if(user == null)return null;
             if(!verifyPassWordHash(PassWord ,  user.PassWordHash , user.SaltPassword))
             return null;
@@ -46,8 +44,8 @@ namespace ZwajApp.API.Data
             CreatePassWordHash( PassWord , out PassWordHash, out PassWordSalt);
             user.PassWordHash = PassWordHash;
             user.SaltPassword = PassWordSalt;
-           await  _datacontext.Users.AddAsync(user);
-            await _datacontext.SaveChangesAsync();
+           await  RepositoryContext.Users.AddAsync(user);
+            await RepositoryContext.SaveChangesAsync();
             return user;
        }
 
