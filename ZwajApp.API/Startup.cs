@@ -55,10 +55,10 @@ namespace ZwajApp.API
             else
             {
                 app.ConfigureExceptionHandler();
-                app.UseHsts();
+                //app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCors(options=> options.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             app.UseAuthentication();    
             app.UseMvc();

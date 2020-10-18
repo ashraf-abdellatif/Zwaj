@@ -9,7 +9,7 @@ export class AuthService {
 
 constructor(private http: HttpClient) { }
 
-BaseURL = 'https://localhost:5001/api/Auth/';
+BaseURL = 'http://localhost:5000/api/Auth/';
 
 Login(UserData: any) {
   return this.http.post(this.BaseURL + 'login' , UserData).pipe(

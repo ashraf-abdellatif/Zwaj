@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AuthService } from '../_services/Auth.service';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-register',
@@ -17,12 +18,13 @@ export class RegisterComponent implements OnInit {
   register() {
     this.service.Register(this.UserData).subscribe(
       result => {
-        console.log('تم التسجيل بنجاح');
+        alertify.success('تم التسجيل بنجاح');
+
       },
       error => {
-        console.log(error);
+        alertify.error(error); 
       }
-    )
+    );
   }
   cancle() {
 this.CancleRegister.emit( false);

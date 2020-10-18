@@ -2,7 +2,7 @@ namespace ZwajApp.API.Data
 {
     public interface IRepositoryWrapper
     {
-          IAuthRepository Auth { get; }
+        IAuthRepository Auth { get; }
         void Save();
     }
 }

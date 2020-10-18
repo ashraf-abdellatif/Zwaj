@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/Auth.service';
-
+import * as alertify from 'alertifyjs';
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'app-Nav',
@@ -20,11 +20,10 @@ export class NavComponent implements OnInit {
     this.service.Login(this.UserData)
       .subscribe(next => {
         this.userLoggedfunc();
-        console.log('تم الدخول بنجاح');
+        alertify.success('تم الدخول بنجاح');
       } ,
       err => {
-        console.log('خطا فى الدخول');
-        console.log(err);
+        alertify.error('خطا فى الدخول');
       });
   }
   userLoggedfunc() {
