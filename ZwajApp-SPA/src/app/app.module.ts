@@ -8,21 +8,30 @@ import {  FormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthService } from './_services/Auth.service';
-
+import { MembersComponent } from './members/members.component';
+import { ListComponent } from './list/list.component';
+import { ChatComponent } from './chat/chat.component';
+import { Router, RouterModule } from '@angular/router';
+import { route } from './routes';
+import { AuthGuard } from './_gaurd/auth.guard';
 @NgModule({
   declarations: [
     AppComponent,
       NavComponent,
       HomeComponent,
-      RegisterComponent
+      RegisterComponent,
+      MembersComponent,
+      ListComponent,
+      ChatComponent
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(route),
   ],
-  providers: [AuthService ],
+  providers: [AuthService , AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

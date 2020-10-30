@@ -19,10 +19,9 @@ export class RegisterComponent implements OnInit {
     this.service.Register(this.UserData).subscribe(
       result => {
         alertify.success('تم التسجيل بنجاح');
-
       },
       error => {
-        alertify.error(error); 
+        alertify.error(error);
       }
     );
   }
