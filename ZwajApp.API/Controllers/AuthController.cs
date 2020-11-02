@@ -41,11 +41,11 @@ namespace ZwajApp.API.Controllers
             var user = await _IRepositoryWrapper.Auth.Login(userforLoginDTO.UserName, userforLoginDTO.PassWord);
             if (user == null)
                 return Unauthorized();
-            var tokenString = GenerateJSONWebToken(user);
+            var tokenString = GenerateJSONWebToken();
             return Ok(new { token = tokenString });
         }
 
-        private string GenerateJSONWebToken(User user)
+        private string GenerateJSONWebToken()
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
