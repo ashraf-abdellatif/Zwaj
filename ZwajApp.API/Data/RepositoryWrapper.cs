@@ -4,6 +4,7 @@ namespace ZwajApp.API.Data
     {
         private DataContext _repoContext;
         private IAuthRepository _Auth;
+        private IUserRepository _User;
         public IAuthRepository Auth {
             get {
                 if(_Auth == null)
@@ -11,6 +12,15 @@ namespace ZwajApp.API.Data
                     _Auth = new AuthRepository(_repoContext);
                 }
                 return _Auth;
+            }
+        }
+        public IUserRepository User {
+            get {
+                if(_User == null)
+                {
+                    _User= new UserRepository(_repoContext);
+                }
+                return _User;
             }
         }
         public RepositoryWrapper(DataContext repositoryContext)

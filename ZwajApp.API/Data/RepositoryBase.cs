@@ -16,6 +16,10 @@ namespace ZwajApp.API.Data
         {
             return this.RepositoryContext.Set<T>().AsNoTracking();
         }
+        public virtual T GetByID(object id)
+    {
+        return this.RepositoryContext.Set<T>().Find(id);
+    }
         public IQueryable<T> FindByCondition(Expression<Func<T, bool>> expression)
         {
             return this.RepositoryContext.Set<T>().Where(expression).AsNoTracking();

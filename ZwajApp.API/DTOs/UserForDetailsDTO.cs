@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
+using ZwajApp.API.Models;
 
-namespace ZwajApp.API.Models
+namespace ZwajApp.API.DTOs
 {
-    public class User
+    public class UserForDetailsDTO
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
-        public byte[] PassWordHash { get; set; }   
-        public byte[] SaltPassword { get; set; }   
+         public int Id { get; set; }
+        public string UserName { get; set; }        
         public string Gender { get; set; } 
-        public DateTime BirthOfDate { get; set; }
+        public int Age { get; set; }
         public string KnownAs { get; set; } 
         public DateTime CreatedDate  { get; set; }
         public DateTime LastActivate { get; set; }
@@ -19,6 +18,7 @@ namespace ZwajApp.API.Models
         public string Interests { get; set; }
         public string City { get; set; }
         public string Countery { get; set; }
-        public ICollection<Photo> Photos { get; set; }
+        public string PhotoUrl { get; set; }
+        public ICollection<PhotoForDetailsDTO> Photos { get; set; }
     }
 }
