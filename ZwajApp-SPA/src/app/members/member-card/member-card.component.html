@@ -1,0 +1,26 @@
+<div class="card mb-4">
+<div class="text-center wrapper">
+<img class="card-img-top" src={{user.photoUrl}} alt={{user.knownAs}}>
+<ul dir="ltr" class="list-inline member-icons animate text-center">
+    <li class="list-inline-item">
+        <button class="btn btn-sm btn-outline-danger" [routerLink]="['/member/',user.id]" >
+            <li class="fa fa-user"></li>
+        </button>
+    </li>
+    <li class="list-inline-item">
+        <button class="btn btn-sm btn-outline-danger">
+            <li class="fa fa-heart"></li>
+        </button>
+    </li>
+    <li class="list-inline-item">
+        <button class="btn btn-sm btn-outline-danger">
+            <li class="fa fa-envelope"></li>
+        </button>
+    </li>
+</ul>
+</div>
+<div class="card-body p-1">
+    <h6 class="card-titl text-center"><i class="fa fa-user"></i> {{user.userName}} </h6>
+    <p class="card-text text-center "> {{user.city}} , {{user.age}}</p>
+</div>
+</div>

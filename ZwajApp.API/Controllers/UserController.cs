@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using ZwajApp.API.DTOs;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace ZwajApp.API.Controllers
 {
@@ -21,6 +23,7 @@ namespace ZwajApp.API.Controllers
             _IRepositoryWrapper = IRepositoryWrapper;
             _mapper = mapper;
         }
+        [Authorize]
         [HttpGet("GetAllUsers")]
         public ActionResult GetAllUsers()
         {
@@ -28,10 +31,11 @@ namespace ZwajApp.API.Controllers
            var usersforreturn = _mapper.Map<IEnumerable<UserForListDTO>>(Users);
            return Ok(usersforreturn);
         }
+        [Authorize]
         [HttpGet("GetByID/{id}")]
         public ActionResult GetByID(int id)
         {
-           var User =  _IRepositoryWrapper.User.GetByID(id);
+           var User =  _IRepositoryWrapper.User.FindByCondition(x=>x.Id == id).Include(a=>a.Photos).FirstOrDefault();
            var userforreturn = _mapper.Map<UserForDetailsDTO>(User);
            return Ok(userforreturn);
         }

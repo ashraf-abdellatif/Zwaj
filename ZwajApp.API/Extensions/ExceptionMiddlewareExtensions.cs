@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -28,5 +29,23 @@ namespace ZwajApp.API.Extensions
                 });
             });
         }
+        public static int ClacAge(this DateTime birthdate)
+        {
+            DateTime now = DateTime.Now;
+            if (birthdate == DateTime.MinValue)
+    {
+        throw new ArgumentException("Date of birth is invalid.", nameof(birthdate));
     }
+
+    if (birthdate >= now) return 0;
+
+    var age = now.Year - birthdate.Year;
+    if (birthdate.DayOfYear > now.DayOfYear)
+    {
+        age--;
+    }
+    return age;
+        }
+    
+}
 }

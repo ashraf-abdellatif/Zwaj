@@ -11,11 +11,14 @@ namespace ZwajApp.API.Extensions
         {
             CreateMap<User,UserForListDTO>()
             .ForMember(dest=>dest.PhotoUrl , opt=>{
-                opt.MapFrom(src=>src.Photos.FirstOrDefault(pho=>pho.IsMain));
-            });
-            CreateMap<User,UserForDetailsDTO>().ForMember(dest=>dest.PhotoUrl , opt=>{
-                opt.MapFrom(src=>src.Photos.FirstOrDefault(pho=>pho.IsMain));
-            });
+                opt.MapFrom(src=>src.Photos.FirstOrDefault(pho=>pho.IsMain).Url)
+            ;})
+            .ForMember(dest=>dest.Age , opt=>{ opt.ResolveUsing(src=>src.BirthOfDate.ClacAge());});
+            CreateMap<User,UserForDetailsDTO>()
+            .ForMember(dest=>dest.PhotoUrl , opt=>{
+                opt.MapFrom(src=>src.Photos.FirstOrDefault(pho=>pho.IsMain).Url);
+            })
+            .ForMember(dest=>dest.Age , opt=>{ opt.ResolveUsing(src=>src.BirthOfDate.ClacAge());});
             CreateMap<Photo,PhotoForDetailsDTO>();
         }
     }

@@ -1,0 +1,53 @@
+<div class="ng-container mt-4">
+  <div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <img class="card-img-top img-thumbnail" src="{{user?.photoUrl}}" alt="{{user?.knownAs}}">
+      <div class="card-body">
+        <div>
+          <strong>يقيم فى :</strong>
+          <p>{{user?.Countery}} , {{user?.city}}</p>
+        </div>
+        <div>
+          <strong>العمر :</strong>
+          <p>{{user?.age}}</p>
+        </div>
+        <div>
+          <strong>اخر ظهور :</strong>
+          <p>{{user?.LastActivate}}</p>
+        </div>
+        <div>
+          <strong>مشترك منذ:</strong>
+          <p>{{user?.CreatedDate}}</p>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn-primary">إعجاب</button>
+        <button class="btn-succed">مراسلة</button>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8">
+    <div class="tab-panel">
+      <tabset class="member-tabset">
+        <tab heading="أنا {{user?.knownAs}}" >
+<h4>أعرفك بنفسي</h4>
+<p>{{user?.Introduction}}</p>
+<h4>أبحث عن</h4>
+<p>{{user?.LookingFor}}</p>
+        </tab>
+        <tab heading="هواياتي " >
+          <h4>هواياتي</h4>
+          <p>{{user?.Interests}}</p>
+          </tab>
+          <tab heading="البوم الصور " >
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+            </tab>
+            <tab heading="رسائلي " >
+              <h4>رسائلي</h4>
+              </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+</div>
