@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { BsDropdownModule } from "ngx-bootstrap";
 
 import { NavComponent } from './Nav/Nav.component';
 import {  FormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { UserService } from './_services/User.service';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { MemberlistComponent } from './members/memberlist/memberlist.component';
 import { MemberDetailComponent } from './members/Member-Detail/Member-Detail.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { MemberDetailComponent } from './members/Member-Detail/Member-Detail.com
       ChatComponent,
       MemberCardComponent,
       MemberlistComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      MemberEditComponent
    ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { MemberDetailComponent } from './members/Member-Detail/Member-Detail.com
     FormsModule,
     RouterModule.forRoot(route),
     TabsModule.forRoot(),
-    NgxGalleryModule
+    NgxGalleryModule,
+    BsDropdownModule.forRoot(),
   ],
   providers: [AuthService , AuthGuard , UserService ],
   bootstrap: [AppComponent]

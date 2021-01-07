@@ -19,7 +19,7 @@ Login(UserData: any) {
    map((resonse: any) => {
     const user = resonse;
     localStorage.setItem('token', user.token);
-    this.router.navigate(['/member']);
+    this.router.navigate(['/members']);
    }));
    }
 Register(UserData: any) {
