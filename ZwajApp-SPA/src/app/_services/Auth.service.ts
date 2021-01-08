@@ -3,13 +3,12 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-
-
+import jwt_decode   from "jwt-decode";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+decodedtoken:any;
 constructor(private http: HttpClient , private router: Router) { }
 
 BaseURL = environment.Url + 'Auth/';
@@ -24,5 +23,9 @@ Login(UserData: any) {
    }
 Register(UserData: any) {
   return this.http.post(this.BaseURL + 'register' , UserData);
+}
+DecodeJwt()
+{
+  this.decodedtoken = jwt_decode( localStorage.getItem('token'));
 }
 }

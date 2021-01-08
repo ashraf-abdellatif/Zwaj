@@ -12,9 +12,9 @@
       </li>
     </ul>
   <div dropdown *ngIf="UserLogged" class="dropdown">
-    <a dropdownToggle class=" dropdown-toggle nav-link text-light" style="font-weight: bold; " >مرحبا بك</a>
+    <a dropdownToggle class=" dropdown-toggle nav-link text-light" style="font-weight: bold; " >مرحبا بك يا {{userDecoded.username}}</a>
     <div *dropdownMenu class="dropdown-menu">
-      <a  class="dropdown-item"><i class="fa fa-user"></i> الملف الشخصي</a>
+      <a class="dropdown-item" [routerLink]="['member/Edit']" ><i class="fa fa-user"></i> الملف الشخصي</a>
       <a class="nav-link" (click)="logout()" class="dropdown-item"><i class="fa fa-sign-out"></i> خروج</a>
     </div>
   </div>

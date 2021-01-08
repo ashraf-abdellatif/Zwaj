@@ -10,10 +10,13 @@ import * as alertify from 'alertifyjs';
 export class NavComponent implements OnInit {
 
   UserData: any = {};
+  userDecoded:any;
   constructor(private service: AuthService) { }
   UserLogged = false;
   ngOnInit() {
     this.userLoggedfunc();
+    this.service.DecodeJwt();
+    this.userDecoded = this.service.decodedtoken;
   }
 
   Login() {
