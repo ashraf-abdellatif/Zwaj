@@ -39,5 +39,16 @@ namespace ZwajApp.API.Controllers
            var userforreturn = _mapper.Map<UserForDetailsDTO>(User);
            return Ok(userforreturn);
         }
+
+        [Authorize]
+        [HttpPut("{id}")]
+        public ActionResult UpdateUser(int id , UserForUpdateDTo userForUpdateDTo)
+        {
+            var UserFromRepos = _IRepositoryWrapper.User.GetByID(id);
+            _mapper.Map(userForUpdateDTo , UserFromRepos);
+            _IRepositoryWrapper.User.Update(UserFromRepos);
+            _IRepositoryWrapper.Save();
+            return NoContent();
         }
-}
+    }
+    }

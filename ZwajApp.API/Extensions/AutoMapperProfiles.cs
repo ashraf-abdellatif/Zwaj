@@ -20,6 +20,7 @@ namespace ZwajApp.API.Extensions
             })
             .ForMember(dest=>dest.Age , opt=>{ opt.ResolveUsing(src=>src.BirthOfDate.ClacAge());});
             CreateMap<Photo,PhotoForDetailsDTO>();
+            CreateMap<UserForUpdateDTo,User>();
         }
     }
 }

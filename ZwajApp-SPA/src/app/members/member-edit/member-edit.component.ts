@@ -22,8 +22,18 @@ export class MemberEditComponent implements OnInit {
     this.userService.GetByID(+this.userDecoded.userid).subscribe(
       (user: User) => {
         this.user = user;
+        console.log(user);
       },
       (error) => { console.log(error); }
     );
+  }
+  UpdateUser()
+  {
+    this.userService.UpDateUser(+this.userDecoded.userid , this.user).subscribe(
+      () => {
+        console.log("تم التعديل بنجاح");
+      },
+      (error) => { console.log(error); }
+    );    
   }
 }
